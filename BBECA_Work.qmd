@@ -1,0 +1,32 @@
+---
+title: "Ongoing and Proposed Research in the Burns Bog Ecological Conservancy Area"
+format:  pdf
+# jupyter: python3
+# echo: false
+author:
+  - name: Dr. June Skeeter
+    orcid: 0000-0002-7051-343X
+    email: june.skeeter@ubc.ca
+    url: https://github.com/June-Skeeter
+    affiliations:
+    - ref: UBC
+  - name: Dr. Sara Knox
+    affiliations:
+    - ref: UBC
+affiliations:
+    - id: UBC
+      name: University of British Columbia
+      department: Department of Geography
+      address: 1984 West Mall
+      city: Vancouver
+      country: CA
+      postal-code: V6T 1Z2
+keywords: [template, demo]
+# bibliography: BB_EC.bib
+# csl: american-geophysical-union.csl
+---
+
+# Abstract
+
+The Burns Bog Ecological Conservancy Area (BBECA) in the municipality of Delta, CA protects the largest raised peat bog on the West Coast.  The bog is is unique among North American peatlands for many reasons.  After decades of peat harvesting, the BBECA was established in 2005 and the BBECA is is now managed by Metro Vancouver.  It is undergoing both active and passive restoration with the aim of promoting ecosystem health and enhancing the water and carbon storage capacity of the bog.  Fluxes of water and carbon (both CO2 and CH4) have been measured semi-continuously since 2014, when the UBC Micrometeorology group installed the CA-DBB flux tower in a degraded beakrush sphagnum ecosystem undergoing active restoration.  This was followed by the CA-DB2 tower in 2019 in beakrush sphagnum ecosystem that has been left to passively restore its self.  Multiple chamber studies and a pore water sampling campaign have also been conducted in since the establishment of the CA-DBB site, and a short-term EC study is planned for a forested portion of the BBECA this summer.  There is a wealth of data available and we are now seeking to make the best possible use of that data.  We are proposing to apply the CLASSIC model to the BBECA in order to help Metro Vancouver determine the best management practices for the BBECA moving forward.  We seek to estimate water and carbon budgets for the bog in its current state and test the potential efficacy of future restoration strategies such as dike construction and seedling removal.
+
