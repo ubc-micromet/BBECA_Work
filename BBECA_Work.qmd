@@ -1,8 +1,9 @@
 ---
 title: "Ongoing and Proposed Research in the Burns Bog Ecological Conservancy Area"
-format:  pdf
-# jupyter: python3
-# echo: false
+format:
+  pdf:
+    code-fold: true
+jupyter: python3
 author:
   - name: Dr. June Skeeter
     orcid: 0000-0002-7051-343X
@@ -18,15 +19,76 @@ affiliations:
       name: University of British Columbia
       department: Department of Geography
       address: 1984 West Mall
-      city: Vancouver
-      country: CA
+      city: Vancouver, BC, Canada
+      # country: CA
       postal-code: V6T 1Z2
-keywords: [template, demo]
+keywords: [Peatlands, Carbon, Micrometeorology, Fluxes, Modelling]
 # bibliography: BB_EC.bib
 # csl: american-geophysical-union.csl
 ---
 
 # Abstract
 
-The Burns Bog Ecological Conservancy Area (BBECA) in the municipality of Delta, CA protects the largest raised peat bog on the West Coast.  The bog is is unique among North American peatlands for many reasons.  After decades of peat harvesting, the BBECA was established in 2005 and the BBECA is is now managed by Metro Vancouver.  It is undergoing both active and passive restoration with the aim of promoting ecosystem health and enhancing the water and carbon storage capacity of the bog.  Fluxes of water and carbon (both CO2 and CH4) have been measured semi-continuously since 2014, when the UBC Micrometeorology group installed the CA-DBB flux tower in a degraded beakrush sphagnum ecosystem undergoing active restoration.  This was followed by the CA-DB2 tower in 2019 in beakrush sphagnum ecosystem that has been left to passively restore its self.  Multiple chamber studies and a pore water sampling campaign have also been conducted in since the establishment of the CA-DBB site, and a short-term EC study is planned for a forested portion of the BBECA this summer.  There is a wealth of data available and we are now seeking to make the best possible use of that data.  We are proposing to apply the CLASSIC model to the BBECA in order to help Metro Vancouver determine the best management practices for the BBECA moving forward.  We seek to estimate water and carbon budgets for the bog in its current state and test the potential efficacy of future restoration strategies such as dike construction and seedling removal.
+The Burns Bog Ecological Conservancy Area (BBECA) in Delta, Canada protects the largest raised peat bog on the West Coast.  After decades of peat harvesting, the BBECA was established in 2005 with the aim of restoring ecosystem health and enhancing the water and carbon storage capacity of the bog.  Water and carbon (CO2 and CH4) flux measurements began in 2014, when the CA-DBB flux tower was installed in a beakrush-sphagnum ecosystem undergoing active restoration via ditch blocking.  The CA-DB2 tower was installed in 2019 in a pine-sphagnum-low-shrub ecosystem undergoing passive restoration.  Flux chamber and a pore water sampling has also been conducted in the BBECA in recent years, and a temporary flux tower will be installed in a pine-sphagnum-woodland ecosystem for the 2023 summer season.  There is a wealth of data available and we are seeking to make the best possible use of it.  We are proposing to apply the CLASSIC model to the BBECA in order to help Metro Vancouver determine the best management practices for the BBECA.  We seek to estimate water and carbon budgets for the bog in its current state and test the potential efficacy of future restoration strategies such as dike construction and seedling removal.
 
+# Introduction
+
+## About the BBECA
+
+```{python}
+#| fig-cap: "Map of the BBECA"
+
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+BBECA = gpd.read_file('BB_Layers/ECOSYS_REV_TEM.shp')
+
+Towers = gpd.read_file('BB_Layers/Towers.shp')
+
+Towers.loc[Towers['Name']=='Sapling_NoTreatment','Name']='BBS'
+
+fig,ax = plt.subplots()
+
+BBECA.dissolve().plot(ax=ax,color='grey')
+Towers.loc[Towers['Name']=='BBS'].plot(ax=ax,
+  marker='*',color='b')#,s=50,label = 'Short-term EC Stations')
+Towers.loc[Towers['Name']!='BBS'].plot(ax=ax,
+  marker='*',color='r')#,s=50,label = 'Long-term EC Stations')
+
+```
+
+## Ecosystems
+
+```{python}
+
+fig,ax = plt.subplots()
+BBECA['Area'] = BBECA.area
+Ecosystems = BBECA[['Area','ECO']].groupby('ECO').sum()
+
+Ecosystems['Pct'] = Ecosystems['Area']/Ecosystems['Area'].sum()
+
+Ecosystems['Type'] = Ecosystems.index
+Ecosystems.loc[Ecosystems['Pct']<.01,'Type']='Other'
+
+Ecosystems=Ecosystems.groupby('Type').sum()
+
+Ecosystems = Ecosystems.sort_values(by='Pct')
+ax.bar(Ecosystems.index,Ecosystems['Pct'])
+
+print(Ecosystems)
+
+```
+
+# Restoration Activities
+
+
+
+Two flux towers
+
+BB1 
+{Img}
+
+BB2
+{Img}
+
+# Modelling Fluxes
