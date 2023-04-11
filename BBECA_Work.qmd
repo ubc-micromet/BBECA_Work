@@ -1,7 +1,9 @@
 ---
 title: "Ongoing and Proposed Research in the Burns Bog Ecological Conservancy Area"
 format:
-  pdf:
+  html:
+    code-fold: true
+  pptx:
     code-fold: true
 jupyter: python3
 author:
@@ -27,55 +29,47 @@ keywords: [Peatlands, Carbon, Micrometeorology, Fluxes, Modelling]
 # csl: american-geophysical-union.csl
 ---
 
+::: {.content-visible when-format="html"}
+
 # Abstract
 
 The Burns Bog Ecological Conservancy Area (BBECA) in Delta, Canada protects the largest raised peat bog on the West Coast.  After decades of peat harvesting, the BBECA was established in 2005 with the aim of restoring ecosystem health and enhancing the water and carbon storage capacity of the bog.  Water and carbon (CO2 and CH4) flux measurements began in 2014, when the CA-DBB flux tower was installed in a beakrush-sphagnum ecosystem undergoing active restoration via ditch blocking.  The CA-DB2 tower was installed in 2019 in a pine-sphagnum-low-shrub ecosystem undergoing passive restoration.  Flux chamber and a pore water sampling has also been conducted in the BBECA in recent years, and a temporary flux tower will be installed in a pine-sphagnum-woodland ecosystem for the 2023 summer season.  There is a wealth of data available and we are seeking to make the best possible use of it.  We are proposing to apply the CLASSIC model to the BBECA in order to help Metro Vancouver determine the best management practices for the BBECA.  We seek to estimate water and carbon budgets for the bog in its current state and test the potential efficacy of future restoration strategies such as dike construction and seedling removal.
+
+:::
 
 # Introduction
 
 ## About the BBECA
 
-```{python}
-#| fig-cap: "Map of the BBECA"
-
-import geopandas as gpd
-import matplotlib.pyplot as plt
-
-BBECA = gpd.read_file('BB_Layers/ECOSYS_REV_TEM.shp')
-
-Towers = gpd.read_file('BB_Layers/Towers.shp')
-
-Towers.loc[Towers['Name']=='Sapling_NoTreatment','Name']='BBS'
-
-fig,ax = plt.subplots()
-
-BBECA.dissolve().plot(ax=ax,color='grey')
-Towers.loc[Towers['Name']=='BBS'].plot(ax=ax,
-  marker='*',color='b')#,s=50,label = 'Short-term EC Stations')
-Towers.loc[Towers['Name']!='BBS'].plot(ax=ax,
-  marker='*',color='r')#,s=50,label = 'Long-term EC Stations')
-
-```
-
 ## Ecosystems
 
 ```{python}
 
-fig,ax = plt.subplots()
-BBECA['Area'] = BBECA.area
-Ecosystems = BBECA[['Area','ECO']].groupby('ECO').sum()
+import pandas as pd
+import matplotlib.pyplot as plt
 
-Ecosystems['Pct'] = Ecosystems['Area']/Ecosystems['Area'].sum()
+Eco = pd.read_csv('BB_Data/Ecosystem_Summary.csv')
 
-Ecosystems['Type'] = Ecosystems.index
-Ecosystems.loc[Ecosystems['Pct']<.01,'Type']='Other'
+fig,ax=plt.subplots()
+ax.barh(Eco['Class'],Eco['Pct'])
+# ax.set_xticklabels(Eco['MAP_UNIT'].values, rotation = 75)
 
-Ecosystems=Ecosystems.groupby('Type').sum()
 
-Ecosystems = Ecosystems.sort_values(by='Pct')
-ax.bar(Ecosystems.index,Ecosystems['Pct'])
+# fig,ax = plt.subplots()
+# BBECA['Area'] = BBECA.area
+# Ecosystems = BBECA[['Area','ECO']].groupby('ECO').sum()
 
-print(Ecosystems)
+# Ecosystems['Pct'] = Ecosystems['Area']/Ecosystems['Area'].sum()
+
+# Ecosystems['Type'] = Ecosystems.index
+# Ecosystems.loc[Ecosystems['Pct']<.01,'Type']='Other'
+
+# Ecosystems=Ecosystems.groupby('Type').sum()
+
+# Ecosystems = Ecosystems.sort_values(by='Pct')
+# ax.bar(Ecosystems.index,Ecosystems['Pct'])
+
+# print(Ecosystems)
 
 ```
 
