@@ -1,0 +1,25 @@
+---
+title: "About the BBECA"
+format:  html
+---
+
+
+
+The Burns Bog Ecological Conservancy Area (BBECA) in Delta, Canada protects the largest raised peat bog on the West Coast.  After decades of peat harvesting, the BBECA was established in 2005 with the aim of restoring ecosystem health and enhancing the water and carbon storage capacity of the bog.  Water and carbon (CO2 and CH4) flux measurements began in 2014, when the CA-DBB flux tower was installed in a beakrush-sphagnum ecosystem undergoing active restoration via ditch blocking.  The CA-DB2 tower was installed in 2019 in a pine-sphagnum-low-shrub ecosystem undergoing passive restoration.  Flux chamber and a pore water sampling has also been conducted in the BBECA in recent years, and a temporary flux tower will be installed in a pine-sphagnum-woodland ecosystem for the 2023 summer season.  There is a wealth of data available and we are seeking to make the best possible use of it.  We are proposing to apply the CLASSIC model to the BBECA in order to help Metro Vancouver determine the best management practices for the BBECA.  We seek to estimate water and carbon budgets for the bog in its current state and test the potential efficacy of future restoration strategies such as dike construction and seedling removal.
+
+
+<div style="overflow: hidden;
+  padding-top: 75%;
+  position: relative">
+  <iframe src="https://ubc-micromet.github.io/FieldSiteMaps/" title="Processes" scrolling="no" frameborder="0"
+    style="border: 0;
+   height: 100%;
+   left: 0;
+   position: absolute;
+   top: 0;
+   width: 100%;">
+   <p>Your browser does not support iframes.</p>
+ </iframe>
+</div>
+
+## Publications

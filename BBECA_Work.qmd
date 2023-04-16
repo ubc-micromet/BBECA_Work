@@ -1,14 +1,15 @@
 ---
 title: "Ongoing and Proposed Research in the Burns Bog Ecological Conservancy Area"
 format:
-  # html:
+  # pptx:
   #   code-fold: true
-  pptx:
-    code-fold: true
   revealjs:
     code-fold: true
+    Navigation:
+      controls: true
   # pdf:
   #   code-fold: true
+  
 execute:
   echo: false
   warning: false
@@ -29,18 +30,10 @@ affiliations:
       department: Department of Geography
       address: 1984 West Mall
       city: Vancouver, BC, Canada
-      # country: CA
       postal-code: V6T 1Z2
 keywords: [Peatlands, Carbon, Micrometeorology, Fluxes, Modelling]
+
 ---
-
-::: {.content-visible when-format="html"}
-
-## Abstract
-
-The Burns Bog Ecological Conservancy Area (BBECA) in Delta, Canada protects the largest raised peat bog on the West Coast.  After decades of peat harvesting, the BBECA was established in 2005 with the aim of restoring ecosystem health and enhancing the water and carbon storage capacity of the bog.  Water and carbon (CO2 and CH4) flux measurements began in 2014, when the CA-DBB flux tower was installed in a beakrush-sphagnum ecosystem undergoing active restoration via ditch blocking.  The CA-DB2 tower was installed in 2019 in a pine-sphagnum-low-shrub ecosystem undergoing passive restoration.  Flux chamber and a pore water sampling has also been conducted in the BBECA in recent years, and a temporary flux tower will be installed in a pine-sphagnum-woodland ecosystem for the 2023 summer season.  There is a wealth of data available and we are seeking to make the best possible use of it.  We are proposing to apply the CLASSIC model to the BBECA in order to help Metro Vancouver determine the best management practices for the BBECA.  We seek to estimate water and carbon budgets for the bog in its current state and test the potential efficacy of future restoration strategies such as dike construction and seedling removal.
-
-:::
 
 ## Introduction
 
@@ -48,19 +41,29 @@ The Burns Bog Ecological Conservancy Area (BBECA) in Delta, Canada protects the 
 
 ::: {.column width="60%"}
 
-The Burn Bog Ecological Conservancy Area (BBECA) was established in 2004 to protect the remaining area of Burns Bog from development.
+Burns Bog is a unique raised peatland ecosystem located in Delta, BC.
 
-* Decades of peat harvesting damaged the peatland ecosystem
-  * Active and passive restoration strategies
-* Protects as unique raised peatland ecosystem
-  * Largest bog on pacific coast
-  * Near the southern boundary of conditions favorable climate conditions for peat accumulation
+* Decades of peat harvesting
+  * Drainage 
+  * **BBECA**: established in 2005 to protect the area from development.
 
 :::
 
 ::: {.column width="40%"}
 
-![](images/Basemap.png)
+<div style="overflow: hidden;
+  padding-top: 75%;
+  position: relative">
+  <iframe src="https://ubc-micromet.github.io/FieldSiteMaps/" title="Processes" scrolling="no" frameborder="0"
+    style="border: 0;
+   height: 100%;
+   left: 0;
+   position: absolute;
+   top: 0;
+   width: 100%;">
+   <p>Your browser does not support iframes.</p>
+ </iframe>
+</div>
 
 :::
 ::::
@@ -71,13 +74,13 @@ The Burn Bog Ecological Conservancy Area (BBECA) was established in 2004 to prot
 ![](images/EcosystemMap.png)
 
 
-## Climate Change
+## Climatology
 
 :::: {.columns}
 
 ::: {.column width="60%"}
 
-Climate change presents challenges to management:
+Uniquely situated in a 
 
 * Summer heatwaves and droughts
   * Decreased C uptake and increased C emission
@@ -92,7 +95,7 @@ Climate change presents challenges to management:
 
 ```{python}
 #| fig-cap: "BBECA Climatology"
-#| fig-alt: "Mean Monthly Air Temperature and Precipitation"
+#| fig-alt: "Climate Data from the BBECA Envrionment Canada Weather Station (2010 - 2022)"
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -104,10 +107,19 @@ ECC_m['PRECIP_AMOUNT'] = ECC_ym.groupby(ECC_ym.index.month).mean()
 
 kwargs = {'color':'red','edgecolor':'k'}
 
-fig,ax=plt.subplots(2)
+fig,ax=plt.subplots(2,sharex=True)
 ax[0].bar(ECC_m.index,ECC_m['TEMP'],**kwargs)
+ax[0].grid()
+ax[0].set_ylabel('$\circ C$')
+ax[0].set_title('Mean Monthly Air Temperature')
+
 kwargs['color']='blue'
 ax[1].bar(ECC_m.index,ECC_m['PRECIP_AMOUNT'],**kwargs)
+ax[1].grid()
+ax[1].set_xticklabels(['','Feb','Apr','Jun','Aug','Oct','Dec'])
+ax[1].set_ylabel('mm')
+ax[1].set_title('Mean Monthly Precipitation')
+
 print()
 
 ```

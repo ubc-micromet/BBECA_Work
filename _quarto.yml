@@ -1,5 +1,16 @@
 project:
-  title: "BBECA_Work"
+  type: website
+  output-dir: docs
+  title: "BBECA Work"
 
 
+website:
+  title: "BBECA Work"
+  navbar:
+    background: light
+    left:
+      - href: index.qmd
+        text: Home
+      - href: BBECA_Work.qmd
+        text: CLASSIC-C Workshop Presentation
 
