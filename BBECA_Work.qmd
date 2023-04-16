@@ -1,10 +1,17 @@
 ---
 title: "Ongoing and Proposed Research in the Burns Bog Ecological Conservancy Area"
 format:
-  html:
-    code-fold: true
+  # html:
+  #   code-fold: true
   pptx:
     code-fold: true
+  revealjs:
+    code-fold: true
+  # pdf:
+  #   code-fold: true
+execute:
+  echo: false
+  warning: false
 jupyter: python3
 author:
   - name: Dr. June Skeeter
@@ -25,57 +32,120 @@ affiliations:
       # country: CA
       postal-code: V6T 1Z2
 keywords: [Peatlands, Carbon, Micrometeorology, Fluxes, Modelling]
-# bibliography: BB_EC.bib
-# csl: american-geophysical-union.csl
 ---
 
 ::: {.content-visible when-format="html"}
 
-# Abstract
+## Abstract
 
 The Burns Bog Ecological Conservancy Area (BBECA) in Delta, Canada protects the largest raised peat bog on the West Coast.  After decades of peat harvesting, the BBECA was established in 2005 with the aim of restoring ecosystem health and enhancing the water and carbon storage capacity of the bog.  Water and carbon (CO2 and CH4) flux measurements began in 2014, when the CA-DBB flux tower was installed in a beakrush-sphagnum ecosystem undergoing active restoration via ditch blocking.  The CA-DB2 tower was installed in 2019 in a pine-sphagnum-low-shrub ecosystem undergoing passive restoration.  Flux chamber and a pore water sampling has also been conducted in the BBECA in recent years, and a temporary flux tower will be installed in a pine-sphagnum-woodland ecosystem for the 2023 summer season.  There is a wealth of data available and we are seeking to make the best possible use of it.  We are proposing to apply the CLASSIC model to the BBECA in order to help Metro Vancouver determine the best management practices for the BBECA.  We seek to estimate water and carbon budgets for the bog in its current state and test the potential efficacy of future restoration strategies such as dike construction and seedling removal.
 
 :::
 
-# Introduction
+## Introduction
 
-## About the BBECA
+:::: {.columns}
+
+::: {.column width="60%"}
+
+The Burn Bog Ecological Conservancy Area (BBECA) was established in 2004 to protect the remaining area of Burns Bog from development.
+
+* Decades of peat harvesting damaged the peatland ecosystem
+  * Active and passive restoration strategies
+* Protects as unique raised peatland ecosystem
+  * Largest bog on pacific coast
+  * Near the southern boundary of conditions favorable climate conditions for peat accumulation
+
+:::
+
+::: {.column width="40%"}
+
+![](images/Basemap.png)
+
+:::
+::::
+
 
 ## Ecosystems
 
-```{python}
+![](images/EcosystemMap.png)
 
+
+## Climate Change
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+Climate change presents challenges to management:
+
+* Summer heatwaves and droughts
+  * Decreased C uptake and increased C emission
+  * Increase wildfire risk
+    * Fires in the bog release C
+    * Smoke events reduce C uptake 
+* Intense winter precipitation
+
+:::
+
+::: {.column width="40%"}
+
+```{python}
+#| fig-cap: "BBECA Climatology"
+#| fig-alt: "Mean Monthly Air Temperature and Precipitation"
 import pandas as pd
 import matplotlib.pyplot as plt
 
-Eco = pd.read_csv('BB_Data/Ecosystem_Summary.csv')
+ECC = pd.read_csv('BB_Data/DELTA BURNS BOG.csv',parse_dates=['LOCAL_DATE'],low_memory=False)
+ECC = ECC.set_index('LOCAL_DATE')
+ECC_m = ECC[['TEMP']].groupby(ECC.index.month).mean()
+ECC_ym = ECC[['PRECIP_AMOUNT']].resample('m').sum()
+ECC_m['PRECIP_AMOUNT'] = ECC_ym.groupby(ECC_ym.index.month).mean()
 
-fig,ax=plt.subplots()
-ax.barh(Eco['Class'],Eco['Pct'])
-# ax.set_xticklabels(Eco['MAP_UNIT'].values, rotation = 75)
+kwargs = {'color':'red','edgecolor':'k'}
 
-
-# fig,ax = plt.subplots()
-# BBECA['Area'] = BBECA.area
-# Ecosystems = BBECA[['Area','ECO']].groupby('ECO').sum()
-
-# Ecosystems['Pct'] = Ecosystems['Area']/Ecosystems['Area'].sum()
-
-# Ecosystems['Type'] = Ecosystems.index
-# Ecosystems.loc[Ecosystems['Pct']<.01,'Type']='Other'
-
-# Ecosystems=Ecosystems.groupby('Type').sum()
-
-# Ecosystems = Ecosystems.sort_values(by='Pct')
-# ax.bar(Ecosystems.index,Ecosystems['Pct'])
-
-# print(Ecosystems)
+fig,ax=plt.subplots(2)
+ax[0].bar(ECC_m.index,ECC_m['TEMP'],**kwargs)
+kwargs['color']='blue'
+ax[1].bar(ECC_m.index,ECC_m['PRECIP_AMOUNT'],**kwargs)
+print()
 
 ```
 
+:::
+::::
+
+
+
+
+<!-- 
+:::: {.columns}
+
+::: {.column width="50%"}
+
+## Climatology -->
+
+<!-- 
+ -->
+<!-- 
+:::
+
+::: {.column width="50%"}
+
+## Climate Change
+
+:::
+
+
+:::: -->
+
+
 # Restoration Activities
 
+Ditch Blocking
+Seedling Removal
 
+# Micromet Sites
 
 Two flux towers
 
@@ -85,4 +155,11 @@ BB1
 BB2
 {Img}
 
+BBS
+{Img}
+
 # Modelling Fluxes
+
+Developing a model to estimate potential future ranges of C fluxes for MetroVancouver
+
+![](images/Models.drawio.png)
