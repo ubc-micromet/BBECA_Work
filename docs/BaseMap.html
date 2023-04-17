@@ -1,18 +1,57 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>BBECA Work -</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+
+
+<link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
 <meta charset="utf-8">
 <title>UBC Micromet Field Sites</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
 <!-- Import Turf Module - Needed to calculate bounding boxes -->
-<script src='https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script>
+<script src="https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js"></script>
 
 <style>
-	body { margin: 0; padding: 0;}
-	#map { position: absolute; top: 0; bottom: 0; width: 100%;}
-	#map canvas {cursor: crosshair;}
+    body { margin: 0; padding: 0;}
+    #map { position: absolute; top: 0; bottom: 0; width: 100%;}
+    #map canvas {cursor: crosshair;}
   
     .action_menu {
         text-align: center;
@@ -110,9 +149,9 @@
         background: #3074a4;
         }
 </style>
-</head>
 
-<body>
+
+
 <nav id="layer_menu"></nav>
 <div id="map"></div>
 
@@ -148,8 +187,8 @@ const mapStyle = {
 //  Create the map - zoom and center are "arbitrary"
 const map = new mapboxgl.Map({
             container: 'map',
-            zoom: 11,
-            center: [-122.998, 49.135],
+            zoom: 9,
+            center: [-122.98, 49.135],
             style: mapStyle,
             });
 
@@ -175,7 +214,7 @@ async function mapData(){
     // const site_name = 'name'
     //  On load - add geojson
     map.on('load', async function() {
-        var set_vis = 'visible'
+        var set_vis = 'none'
 
         // Add each layer as an invisible layer
         for (var i = 0; i < SiteIds.length; i++) {
@@ -262,7 +301,7 @@ async function mapData(){
 
                         // fit zom to the bounding box of whichever layers are loaded
                         function fit() {
-                            map.fitBounds(bbox, {maxZoom: 14});
+                            map.fitBounds(bbox, {maxZoom: 16});
                             };
             
                         fit();
@@ -314,5 +353,11 @@ mapData();
 
 </script>
  
-</body>
-</html>
+
+
+
+
+
+
+
+</body></html>

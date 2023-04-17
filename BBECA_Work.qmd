@@ -5,18 +5,22 @@ format:
   #   code-fold: true
   revealjs:
     code-fold: true
-    Navigation:
-      controls: true
+    controls: true
+    navigation-mode: linear
+    controls-layout: bottom-right
+    controls-tutorial: true
+    margin: 0.05
+    width: 1200
   # pdf:
   #   code-fold: true
   
-execute:
-  echo: false
-  warning: false
-jupyter: python3
+# execute:
+#   echo: false
+#   warning: false
+# jupyter: python3
 author:
   - name: Dr. June Skeeter
-    orcid: 0000-0002-7051-343X
+    # orcid: 0000-0002-7051-343X
     email: june.skeeter@ubc.ca
     url: https://github.com/June-Skeeter
     affiliations:
@@ -41,20 +45,23 @@ keywords: [Peatlands, Carbon, Micrometeorology, Fluxes, Modelling]
 
 ::: {.column width="60%"}
 
-Burns Bog is a unique raised peatland ecosystem located in Delta, BC.
+Burns Bog is a unique raised bog located in Delta, BC.  The **BBECA** was established in 2005
 
-* Decades of peat harvesting
-  * Drainage 
-  * **BBECA**: established in 2005 to protect the area from development.
+* Prevent further development
+* Remediate impacts of harvesting
+  * Preserve the peatland ecosystem
+  * Prevent/reverse Carbon loss
 
 :::
 
 ::: {.column width="40%"}
 
 <div style="overflow: hidden;
-  padding-top: 75%;
+  width: 100%;
+  height: 600;
+  padding-top: 100%;
   position: relative">
-  <iframe src="https://ubc-micromet.github.io/FieldSiteMaps/" title="Processes" scrolling="no" frameborder="0"
+  <iframe src="BaseMap.html" title="Processes" scrolling="no" frameborder="0"
     style="border: 0;
    height: 100%;
    left: 0;
@@ -69,109 +76,71 @@ Burns Bog is a unique raised peatland ecosystem located in Delta, BC.
 ::::
 
 
-## Ecosystems
-
-![](images/EcosystemMap.png)
-
 
 ## Climatology
 
 :::: {.columns}
 
-::: {.column width="60%"}
+::: {.column width="50%"}
 
-Uniquely situated in a 
+Uniquely situated in a Mediterranean climate
 
-* Summer heatwaves and droughts
-  * Decreased C uptake and increased C emission
-  * Increase wildfire risk
-    * Fires in the bog release C
-    * Smoke events reduce C uptake 
-* Intense winter precipitation
+* Vulnerable to:
+  * Heatwaves and droughts
+    * Fires
+  * Intense winter precipitation
 
 :::
 
-::: {.column width="40%"}
+::: {.column width="50%"}
 
-```{python}
-#| fig-cap: "BBECA Climatology"
-#| fig-alt: "Climate Data from the BBECA Envrionment Canada Weather Station (2010 - 2022)"
-import pandas as pd
-import matplotlib.pyplot as plt
+Monthly climate data from the BBECA Environment Canada weather station
 
-ECC = pd.read_csv('BB_Data/DELTA BURNS BOG.csv',parse_dates=['LOCAL_DATE'],low_memory=False)
-ECC = ECC.set_index('LOCAL_DATE')
-ECC_m = ECC[['TEMP']].groupby(ECC.index.month).mean()
-ECC_ym = ECC[['PRECIP_AMOUNT']].resample('m').sum()
-ECC_m['PRECIP_AMOUNT'] = ECC_ym.groupby(ECC_ym.index.month).mean()
+![](images/Climatology.png)
 
-kwargs = {'color':'red','edgecolor':'k'}
-
-fig,ax=plt.subplots(2,sharex=True)
-ax[0].bar(ECC_m.index,ECC_m['TEMP'],**kwargs)
-ax[0].grid()
-ax[0].set_ylabel('$\circ C$')
-ax[0].set_title('Mean Monthly Air Temperature')
-
-kwargs['color']='blue'
-ax[1].bar(ECC_m.index,ECC_m['PRECIP_AMOUNT'],**kwargs)
-ax[1].grid()
-ax[1].set_xticklabels(['','Feb','Apr','Jun','Aug','Oct','Dec'])
-ax[1].set_ylabel('mm')
-ax[1].set_title('Mean Monthly Precipitation')
-
-print()
-
-```
 
 :::
 ::::
 
 
+## Ecosystems of the BBECA
+
+The bog contains a wide variety of ecosystem types than can broadly be grouped into 5 classes.
+
+![](images/EcosystemMap.png){fig-align="center" width=80%}
 
 
-<!-- 
-:::: {.columns}
 
-::: {.column width="50%"}
-
-## Climatology -->
-
-<!-- 
- -->
-<!-- 
-:::
-
-::: {.column width="50%"}
-
-## Climate Change
-
-:::
-
-
-:::: -->
-
-
-# Restoration Activities
+## Restoration Activities
 
 Ditch Blocking
 Seedling Removal
 
-# Micromet Sites
+# Flux Measurement Sites
 
-Two flux towers
+![](images/BB1_System.jpg)
 
-BB1 
-{Img}
 
-BB2
-{Img}
+## BB1
 
-BBS
-{Img}
 
-# Modelling Fluxes
+
+![](images/Beakrush_Sedge.jpg)
+
+## BB2
+
+![](images/Pine_Sphagnum.jpg)
+
+## BBS
+
+![](images/BurnZone.jpg)
+
+# Proposed Research
+
+## Modelling Fluxes
+
+Modeling fluxes in a changing climate
 
 Developing a model to estimate potential future ranges of C fluxes for MetroVancouver
 
-![](images/Models.drawio.png)
+![](images/SIF_Model.png)
