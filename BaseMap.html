@@ -159,7 +159,6 @@ var Sites = [];
 for( var i = 0; i < SiteIds.length; i++ ){
         Sites.push(SiteIds[i]+'.geojson');
     }
-    
 var Boundary = URL+'BBECA_Boundary.geojson'
 
 // get geojson layer from github
@@ -206,6 +205,8 @@ async function mapData(){
         };
 
         var Bound = await getGeoJson(Boundary);
+
+        console.log(Bound)
             
         map.addSource('Boundary', {
             type: 'geojson',
@@ -290,7 +291,7 @@ async function mapData(){
         const description = '<table style="table-layout: fixed; width:100%; font-size:1.25em"><tr><th style="width:40%"></th><th></th></tr>'+
         '<tr><td><b>Site Name</b></td><td>'+e.features[0].properties.Name+'</td></tr>'+
         '<tr><td><b>Site Description</b></td><td style="word-break: normal">'+e.features[0].properties.Description+'</td></tr>'+
-        '<tr><td><b>View Web Plot</b></td><td><a href='+e.features[0].properties.WebPlot+' target="_blank">Click Here</a></td></tr>'+
+        '<tr><td><b>View Web Plot</b></td><td>'+e.features[0].properties.WebPlot+'</td></tr>'+
         '</table>';
         
         // Ensure that if the map is zoomed out such that multiple
