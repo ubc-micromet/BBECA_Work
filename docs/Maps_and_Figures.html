@@ -588,7 +588,7 @@ Balance:  736.48 1137.41
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="46">
+<div class="cell" data-execution_count="71">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -608,138 +608,95 @@ Balance:  736.48 1137.41
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> <span class="st">'/Clean/SecondStage/P_1_1_1'</span></span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    TA <span class="op">=</span> <span class="st">'/Clean/SecondStage/TA_1_1_1'</span></span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    ET <span class="op">=</span> <span class="st">'/Flux/Clean/ET'</span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    Time <span class="op">=</span> <span class="st">'/Met/clean_tv'</span></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    WL <span class="op">=</span> Dir <span class="op">+</span> WL</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    BH <span class="op">=</span> Dir <span class="op">+</span> BH</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> Dir <span class="op">+</span> P</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    TA <span class="op">=</span> Dir <span class="op">+</span> TA</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    ET <span class="op">=</span> Dir <span class="op">+</span> ET</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    time_file <span class="op">=</span> Dir <span class="op">+</span> Time</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    Time <span class="op">=</span> np.fromfile(<span class="bu">open</span>(time_file, mode<span class="op">=</span><span class="st">'rb'</span>), <span class="st">'float64'</span>)</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># WL = np.fromfile(open(WL, mode='rb'), 'float32')</span></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># BH = np.fromfile(open(BH, mode='rb'), 'float32')</span></span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> np.fromfile(<span class="bu">open</span>(P, mode<span class="op">=</span><span class="st">'rb'</span>), <span class="st">'float32'</span>)</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    TA <span class="op">=</span> np.fromfile(<span class="bu">open</span>(TA, mode<span class="op">=</span><span class="st">'rb'</span>), <span class="st">'float32'</span>)</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    ET <span class="op">=</span> np.fromfile(<span class="bu">open</span>(ET, mode<span class="op">=</span><span class="st">'rb'</span>), <span class="st">'float32'</span>)</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    Time <span class="op">=</span> pd.to_datetime(Time<span class="op">-</span><span class="dv">719529</span>,unit<span class="op">=</span><span class="st">'D'</span>)</span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    Clim <span class="op">=</span> pd.concat([</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>        Clim,</span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>        pd.DataFrame(index<span class="op">=</span>Time,data<span class="op">=</span>{<span class="st">'P'</span>:P,<span class="st">'TA'</span>:TA,<span class="st">'ET'</span>:ET})</span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>        ])</span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>Clim <span class="op">=</span> Clim.loc[Clim.index.year<span class="op">&lt;=</span><span class="dv">2023</span>]</span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>Clim.to_csv(<span class="st">'BB_Data/BB1_Climate.csv'</span>)</span>
-<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>Clim.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="46">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>P</th>
-      <th>TA</th>
-      <th>ET</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2016-01-01 00:30:00.000003328</th>
-      <td>0.0</td>
-      <td>-5.254056</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2016-01-01 00:59:59.999996672</th>
-      <td>0.0</td>
-      <td>-4.869694</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2016-01-01 01:30:00.000000000</th>
-      <td>0.0</td>
-      <td>-4.534694</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2016-01-01 02:00:00.000003328</th>
-      <td>0.0</td>
-      <td>-4.130424</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2016-01-01 02:29:59.999996672</th>
-      <td>0.0</td>
-      <td>-4.812541</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    VPD <span class="op">=</span> <span class="st">'/Clean/SecondStage/VPD_1_1_1'</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    Time <span class="op">=</span> <span class="st">'/Met/clean_tv'</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    WL <span class="op">=</span> Dir <span class="op">+</span> WL</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    BH <span class="op">=</span> Dir <span class="op">+</span> BH</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> Dir <span class="op">+</span> P</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    TA <span class="op">=</span> Dir <span class="op">+</span> TA</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    ET <span class="op">=</span> Dir <span class="op">+</span> ET</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    time_file <span class="op">=</span> Dir <span class="op">+</span> Time</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    Time <span class="op">=</span> np.fromfile(<span class="bu">open</span>(time_file, mode<span class="op">=</span><span class="st">'rb'</span>), <span class="st">'float64'</span>)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># WL = np.fromfile(open(WL, mode='rb'), 'float32')</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># BH = np.fromfile(open(BH, mode='rb'), 'float32')</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> np.fromfile(<span class="bu">open</span>(P, mode<span class="op">=</span><span class="st">'rb'</span>), <span class="st">'float32'</span>)</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    TA <span class="op">=</span> np.fromfile(<span class="bu">open</span>(TA, mode<span class="op">=</span><span class="st">'rb'</span>), <span class="st">'float32'</span>)</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    ET <span class="op">=</span> np.fromfile(<span class="bu">open</span>(ET, mode<span class="op">=</span><span class="st">'rb'</span>), <span class="st">'float32'</span>)</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    VPD <span class="op">=</span> np.fromfile(<span class="bu">open</span>(VPD, mode<span class="op">=</span><span class="st">'rb'</span>), <span class="st">'float32'</span>)</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    Time <span class="op">=</span> pd.to_datetime(Time<span class="op">-</span><span class="dv">719529</span>,unit<span class="op">=</span><span class="st">'D'</span>)</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    Clim <span class="op">=</span> pd.concat([</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>        Clim,</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>        pd.DataFrame(index<span class="op">=</span>Time,data<span class="op">=</span>{<span class="st">'P'</span>:P,<span class="st">'TA'</span>:TA,<span class="st">'ET'</span>:ET,<span class="st">'VPD'</span>:VPD})</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>        ])</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>Clim <span class="op">=</span> Clim.loc[Clim.index.year<span class="op">&lt;=</span><span class="dv">2023</span>]</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>Clim.to_csv(<span class="st">'BB_Data/BB1_Climate.csv'</span>)</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>Clim.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>OSError: [Errno 112] Host is down: '/mnt/w/2016/BB/Flux/Clean/ET'</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># M = Clim.resample('M').sum()</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># M['TA'] = Clim.resample('M').mean()['TA']</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># M.loc[((M.index.year&lt;=2022)|(M.index.month&lt;=3))]</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># M = M.groupby(M.index.month).mean()</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># M</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># M = Clim.resample('M').sum()</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># M['TA'] = Clim.resample('M').mean()['TA']</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># M.loc[((M.index.year&lt;=2022)|(M.index.month&lt;=3))]</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># M = M.groupby(M.index.month).mean()</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># M</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="39">
 <pre><code>(105167, 3)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="117">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># WTD.to_csv('BB_Data/BB1.WTD')</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># WTD.resample('D').mean().plot(kind='scatter',x='WL',y='BH')</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>WTD <span class="op">=</span> pd.read_csv(<span class="st">'BB_Data/BB1.WTD'</span>,parse_dates<span class="op">=</span>{<span class="st">'Date'</span>:[<span class="dv">0</span>]})</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>WTD <span class="op">=</span> WTD.set_index(<span class="st">'Date'</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>WTD <span class="op">=</span> WTD.resample(<span class="st">'30T'</span>).nearest()</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>WTD_Man <span class="op">=</span> pd.read_csv(<span class="st">'BB_Data/BBFluxWell_SaraKnox.csv'</span>,skiprows<span class="op">=</span><span class="dv">3</span>,parse_dates<span class="op">=</span>[<span class="st">'Date'</span>])</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>WTD_Man <span class="op">=</span> WTD_Man.set_index(WTD_Man[<span class="st">'Date'</span>])</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>WTD_Man <span class="op">=</span> WTD_Man.drop(<span class="st">'Date'</span>,axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># WTD</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>WTD_Man[<span class="st">'Pipe'</span>] <span class="op">=</span> WTD_Man[[<span class="st">'Ground_centralWell_westSideofPipe'</span>,<span class="st">'Ground_centralWell_southSideofPipe'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>WTD_Man[<span class="st">'WTD'</span>]<span class="op">=</span>WTD_Man[<span class="st">'Pipe'</span>]<span class="op">-</span>WTD_Man[<span class="st">'WT_centralWell'</span>]</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>WTD_Man <span class="op">=</span> WTD_Man.resample(<span class="st">'30T'</span>).last()</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>WTD <span class="op">=</span> WTD.join(WTD_Man[[<span class="st">'WTD'</span>,<span class="st">'Pipe'</span>]])</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>WTD_BU <span class="op">=</span> WTD.copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># WTD.to_csv('BB_Data/BB1.WTD')</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># WTD.resample('D').mean().plot(kind='scatter',x='WL',y='BH')</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>WTD <span class="op">=</span> pd.read_csv(<span class="st">'BB_Data/BB1.WTD'</span>,parse_dates<span class="op">=</span>{<span class="st">'Date'</span>:[<span class="dv">0</span>]})</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>WTD <span class="op">=</span> WTD.set_index(<span class="st">'Date'</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>WTD <span class="op">=</span> WTD.resample(<span class="st">'30T'</span>).nearest()</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>WTD_Man <span class="op">=</span> pd.read_csv(<span class="st">'BB_Data/BBFluxWell_SaraKnox.csv'</span>,skiprows<span class="op">=</span><span class="dv">3</span>,parse_dates<span class="op">=</span>[<span class="st">'Date'</span>])</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>WTD_Man <span class="op">=</span> WTD_Man.set_index(WTD_Man[<span class="st">'Date'</span>])</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>WTD_Man <span class="op">=</span> WTD_Man.drop(<span class="st">'Date'</span>,axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># WTD</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>WTD_Man[<span class="st">'Pipe'</span>] <span class="op">=</span> WTD_Man[[<span class="st">'Ground_centralWell_westSideofPipe'</span>,<span class="st">'Ground_centralWell_southSideofPipe'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>WTD_Man[<span class="st">'WTD'</span>]<span class="op">=</span>WTD_Man[<span class="st">'Pipe'</span>]<span class="op">-</span>WTD_Man[<span class="st">'WT_centralWell'</span>]</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>WTD_Man <span class="op">=</span> WTD_Man.resample(<span class="st">'30T'</span>).last()</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>WTD <span class="op">=</span> WTD.join(WTD_Man[[<span class="st">'WTD'</span>,<span class="st">'Pipe'</span>]])</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>WTD_BU <span class="op">=</span> WTD.copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="118">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>WTD <span class="op">=</span> WTD[[<span class="st">'WL'</span>,<span class="st">'WTD'</span>]].dropna()</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots()</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(WTD[<span class="st">'WL'</span>],WTD[<span class="st">'WTD'</span>],c<span class="op">=</span>WTD.index.year)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(WTD[<span class="st">'WL'</span>],prepend<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>mod <span class="op">=</span> sm.OLS(WTD[<span class="st">'WTD'</span>], X)</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> mod.fit()</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(WTD_BU[<span class="st">'WL'</span>],prepend<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>WTD_BU[<span class="st">'WTD_est'</span>] <span class="op">=</span> res.predict(X)</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>ax.plot(WTD_BU.index,WTD_BU[<span class="st">'WTD_est'</span>] )</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res.summary())</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>WTD_BU.to_csv(<span class="st">'BB_Data/BB1_WTD_Corrected.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>WTD <span class="op">=</span> WTD[[<span class="st">'WL'</span>,<span class="st">'WTD'</span>]].dropna()</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots()</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(WTD[<span class="st">'WL'</span>],WTD[<span class="st">'WTD'</span>],c<span class="op">=</span>WTD.index.year)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(WTD[<span class="st">'WL'</span>],prepend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>mod <span class="op">=</span> sm.OLS(WTD[<span class="st">'WTD'</span>], X)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> mod.fit()</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(WTD_BU[<span class="st">'WL'</span>],prepend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>WTD_BU[<span class="st">'WTD_est'</span>] <span class="op">=</span> res.predict(X)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>ax.plot(WTD_BU.index,WTD_BU[<span class="st">'WTD_est'</span>] )</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res.summary())</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>WTD_BU.to_csv(<span class="st">'BB_Data/BB1_WTD_Corrected.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                            OLS Regression Results                            
 ==============================================================================
