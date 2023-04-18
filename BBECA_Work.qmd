@@ -9,8 +9,8 @@ format:
     navigation-mode: linear
     controls-layout: bottom-right
     controls-tutorial: true
-    # margin: 0.05
-    # width: 1200
+    margin: 0.05
+    width: 1200
     css: style.css
     slide-number: true
     show-slide-number: all
@@ -42,27 +42,27 @@ csl: american-geophysical-union.csl
 
 ---
 
-# Introduction
+## Burns Bog Ecological Conservancy Area
 
 :::: {.columns}
 
-::: {.column width="60%"}
+::: {.column}
 
-Burns Bog is a raised ombrotrophic peatland in the Fraser River Delta. 
+Protects a raised ombrotrophic peat bog in Delta, BC.
 
-* **BBECA** created in 2005 
-  * Promote peat growth, increase water retention, & minimize/reverse C loss
-    * 50+ years of peat removal
-  * Restoration practices include:
-    * Ditch blocking & seedling removal
+* 50+ years of peat harvesting & development
+  * **BBECA** established in 2004
+* Restoration practices include:
+  * Ditch blocking
+  * Seedling removal  
 
 :::
 
-::: {.column #hcenter width="40%" }
+::: {.column}
 
-**BBECA** in Delta, BC.
+<!-- **BBECA** in Delta, BC. -->
 
-<div style="overflow: hidden;
+<!-- <div style="overflow: hidden;
   width: 100%;
   height: 600;
   padding-top: 100%;
@@ -74,9 +74,11 @@ Burns Bog is a raised ombrotrophic peatland in the Fraser River Delta.
    position: absolute;
    top: 0;
    width: 100%;">
-   <!-- <p>Your browser does not support iframes.</p> -->
  </iframe>
-</div>
+</div> -->
+
+
+![](images/Basemap.png){fig-align="center" width=100%}
 
 :::
 ::::
@@ -228,9 +230,33 @@ Metro Vancouver Sustainability and Innovation Fund.
 :::
 ::::
 
+
+## Applying CLASSIC to the BOG
+
+:::: {.columns}
+::: {.column width="50%"}
+
+Metro Vancouver Sustainability and Innovation Fund.
+
+* Modeling impacts of change on carbon and climate
+  * Test influence of management scenarios
+  * Optimize C sequestration of the BBECA
+* Refine spatial inventory of BBECA Ecosystems
+
+:::
+
+::: {.column width="50%"}
+
+![](images/SIF_Model.png){fig-align="center" height=550} 
+
+:::
+::::
+
+
+
 ## GHG fluxes from Prairie Pothole wetlands 
 
-In collaboration with Ducks Unlimited Canada, we are measureming GHG fluxes from wetlands in the Prairie Pothole region of Canada (Manitoba).
+In collaboration with Ducks Unlimited Canada, we are measuring GHG fluxes from wetlands in the Prairie Pothole region of Canada (Manitoba).
 
 ::: {layout-ncol=2}
 
