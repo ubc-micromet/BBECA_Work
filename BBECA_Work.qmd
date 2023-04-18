@@ -9,11 +9,11 @@ format:
     navigation-mode: linear
     controls-layout: bottom-right
     controls-tutorial: true
-    margin: 0.05
-    width: 1200
+    # margin: 0.05
+    # width: 1200
     css: style.css
     slide-number: true
-    show-slide-number: print
+    show-slide-number: all
   # pdf:
   #   code-fold: true
   
