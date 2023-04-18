@@ -163,6 +163,9 @@ const map = new mapboxgl.Map({
             style: mapStyle,
             });
 
+            
+map.addControl(new mapboxgl.NavigationControl());  
+
 // Define Sites
 const SiteIds = ['BB1','BB2','BBS'];
 var Sites = [];

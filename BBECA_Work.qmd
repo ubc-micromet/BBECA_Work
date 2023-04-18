@@ -11,6 +11,7 @@ format:
     controls-tutorial: true
     margin: 0.05
     width: 1200
+    css: style.css
   # pdf:
   #   code-fold: true
   
@@ -45,16 +46,19 @@ keywords: [Peatlands, Carbon, Micrometeorology, Fluxes, Modelling]
 
 ::: {.column width="60%"}
 
-Burns Bog is a unique raised bog located in Delta, BC.  The **BBECA** was established in 2005
+Burns Bog is a raised ombrotrophic peatland in the Fraser River Delta. 
 
-* Prevent further development
-* Remediate impacts of harvesting
-  * Preserve the peatland ecosystem
-  * Prevent/reverse Carbon loss
+* **BBECA** created in 2005 
+  * Promote peat growth, increase water retention, & minimize/reverse C loss
+    * 50+ years of peat removal
+  * Restoration practices include:
+    * Ditch blocking & seedling removal
 
 :::
 
-::: {.column width="40%"}
+::: {.column #hcenter width="40%" }
+
+**BBECA** in Delta, BC.
 
 <div style="overflow: hidden;
   width: 100%;
@@ -68,13 +72,12 @@ Burns Bog is a unique raised bog located in Delta, BC.  The **BBECA** was establ
    position: absolute;
    top: 0;
    width: 100%;">
-   <p>Your browser does not support iframes.</p>
+   <!-- <p>Your browser does not support iframes.</p> -->
  </iframe>
 </div>
 
 :::
 ::::
-
 
 
 ## Climatology
@@ -83,18 +86,17 @@ Burns Bog is a unique raised bog located in Delta, BC.  The **BBECA** was establ
 
 ::: {.column width="50%"}
 
-Uniquely situated in a Mediterranean climate
+BBECA has a mean annual air temperature of 10 C and receives 1200 mm of precipitation a year.
 
-* Vulnerable to:
-  * Heatwaves and droughts
-    * Fires
-  * Intense winter precipitation
+* Mediterranean climate poses management challenges
+  * Summer: heatwaves, droughts, & fires 
+  * Winter: Intense precipitation & flooding
 
 :::
 
 ::: {.column width="50%"}
 
-Monthly climate data from the BBECA Environment Canada weather station
+Monthly climate data from the BBECA
 
 ![](images/Climatology.png)
 
@@ -105,16 +107,7 @@ Monthly climate data from the BBECA Environment Canada weather station
 
 ## Ecosystems of the BBECA
 
-The bog contains a wide variety of ecosystem types than can broadly be grouped into 5 classes.
-
-![](images/EcosystemMap.png){fig-align="center" width=80%}
-
-
-
-## Restoration Activities
-
-Ditch Blocking
-Seedling Removal
+![](images/EcosystemMap.png){fig-align="center" width=100%}
 
 # Flux Measurement Sites
 
@@ -123,24 +116,101 @@ Seedling Removal
 
 ## BB1
 
+:::: {.columns}
+
+::: {.column width="50%"}
+
+Beakrush-sphagnum ecosystem undergoing active restoration with an EC station established in 2015. 
+
+* Harvested from 1957 to 1963
+  * Rewetting (ditch-blocking) began in 2007
+* Net-neutral C fluxes (2016 - 2021)
+  * CO<sub>2</sub> uptake offset by CH<sub>4</sub> emissions
+    * *Positive Radiative Balance*
+  * Significant inter-annual variability
+
+:::
+
+::: {.column width="50%"}
 
 
 ![](images/Beakrush_Sedge.jpg)
 
+
+:::
+::::
+
+
 ## BB2
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+Beakrush-sphagnum/pine-sphagnum ecosystem with an EC station established in 2019. 
+
+* Harvested from 1930 to 1948
+  * Rewetting by passive means
+* Net C source (2020)
+  * Net CO<sub>2</sub> emission
+  * Lower CH<sub>4</sub> emission than BB1
+
+:::
+
+::: {.column width="50%"}
+
 
 ![](images/Pine_Sphagnum.jpg)
 
+
+:::
+::::
+
+
 ## BBS
 
+:::: {.columns}
+::: {.column width="50%"}
+
+
+Pine-sphagnum ecosystem burned by wildfire in 2015.
+
+* Post-fire pine seedling germination
+  * 2006 fire > in dense pine stand > halted peat development
+  * Seedling removal initiated in 2019
+* Chamber experiment assessing impacts of removal on respiration
+* Mobile flux tower will be installed in seedling area
+
+:::
+
+::: {.column width="50%"}
+
+
 ![](images/BurnZone.jpg)
+
+:::
+::::
 
 # Proposed Research
 
 ## Modelling Fluxes
 
-Modeling fluxes in a changing climate
+:::: {.columns}
+::: {.column width="50%"}
 
-Developing a model to estimate potential future ranges of C fluxes for MetroVancouver
+Metro Vancouver Sustainability and Innovation Fund.
+
+* Modeling impacts of change on carbon and climate
+  * Test influence of management scenarios
+  * Optimize C sequestration of the BBECA
+* Refine spatial inventory of BBECA Ecosystems
+
+:::
+
+::: {.column width="50%"}
 
 ![](images/SIF_Model.png)
+
+:::
+::::
