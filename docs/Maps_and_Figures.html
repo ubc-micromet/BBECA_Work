@@ -121,6 +121,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -165,7 +168,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<div class="cell" data-execution_count="28">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextily <span class="im">as</span> cx</span>
@@ -267,7 +270,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>Chambers <span class="op">=</span> Chambers.reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="29">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">7</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gs <span class="op">=</span> gridspec.GridSpec(<span class="dv">100</span>, <span class="dv">100</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>bar<span class="op">=</span>fig.add_subplot(gs[<span class="dv">7</span>:<span class="dv">93</span>, <span class="dv">0</span>:<span class="dv">20</span>])</span>
@@ -316,28 +319,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> treat <span class="kw">in</span> Chambers[<span class="st">'Treatment'</span>].unique():</span>
 <span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    row <span class="op">=</span> Chambers.loc[((Chambers[<span class="st">'Zone'</span>]<span class="op">==</span><span class="dv">2016</span>)<span class="op">&amp;</span>(Chambers[<span class="st">'Treatment'</span>]<span class="op">==</span>treat))]</span>
 <span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    kwargs[<span class="st">'marker'</span>] <span class="op">=</span> row[<span class="st">'marker'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># kwargs['facecolor'] = row['color']</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="bu">map</span>.scatter(row.geometry.x,row.geometry.y,</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span>treat,</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>           <span class="op">**</span>kwargs)</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>handles, labels <span class="op">=</span> <span class="bu">map</span>.get_legend_handles_labels()</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>handles.insert(<span class="dv">0</span>,<span class="st">'Flux Towers'</span>)</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>labels.insert(<span class="dv">0</span>,<span class="st">''</span>)</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>handles.insert(<span class="dv">3</span>,<span class="st">'Chamber Plots'</span>)</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>labels.insert(<span class="dv">3</span>,<span class="st">''</span>)</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="bu">map</span>.legend(handles<span class="op">=</span>(handles),labels<span class="op">=</span>(labels),loc<span class="op">=</span><span class="dv">4</span>,</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>           handler_map<span class="op">=</span>{<span class="bu">str</span>: mel.LegendTitle({<span class="st">'fontsize'</span>: <span class="dv">14</span>})})</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="bu">map</span>.get_xaxis().set_visible(<span class="va">False</span>)</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="bu">map</span>.get_yaxis().set_visible(<span class="va">False</span>)</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="bu">map</span>.set_title(<span class="st">'Burns Bog Ecological Conservancy Area'</span>)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="bu">map</span>.scatter(row.geometry.x,row.geometry.y,</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span>treat,</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>           <span class="op">**</span>kwargs)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>handles, labels <span class="op">=</span> <span class="bu">map</span>.get_legend_handles_labels()</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>handles.insert(<span class="dv">0</span>,<span class="st">'Flux Towers'</span>)</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>labels.insert(<span class="dv">0</span>,<span class="st">''</span>)</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>handles.insert(<span class="dv">3</span>,<span class="st">'Chamber Plots'</span>)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>labels.insert(<span class="dv">3</span>,<span class="st">''</span>)</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="bu">map</span>.legend(handles<span class="op">=</span>(handles),labels<span class="op">=</span>(labels),loc<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>           handler_map<span class="op">=</span>{<span class="bu">str</span>: mel.LegendTitle({<span class="st">'fontsize'</span>: <span class="dv">14</span>})})</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="bu">map</span>.get_xaxis().set_visible(<span class="va">False</span>)</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="bu">map</span>.get_yaxis().set_visible(<span class="va">False</span>)</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="bu">map</span>.set_title(<span class="st">'Burns Bog Ecological Conservancy Area'</span>)</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>cx.add_basemap(<span class="bu">map</span>,source<span class="op">=</span>cx.providers.OpenStreetMap.Mapnik, crs<span class="op">=</span>BBS.crs)<span class="co">#, zoom=11)</span></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'images/EcosystemMap.png'</span>,dpi<span class="op">=</span><span class="dv">600</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>cx.add_basemap(<span class="bu">map</span>,source<span class="op">=</span>cx.providers.OpenStreetMap.Mapnik, crs<span class="op">=</span>BBS.crs)<span class="co">#, zoom=11)</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'images/EcosystemMap.png'</span>,dpi<span class="op">=</span><span class="dv">600</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="15">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Boundary <span class="op">=</span> BBECA.dissolve()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Scale <span class="op">=</span> <span class="dv">27500</span></span>
@@ -364,87 +366,413 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'images/Basemap.png'</span>,dpi<span class="op">=</span><span class="dv">600</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="Maps_and_Figures_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import rasterio as rio</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># import numpy as np</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># from rasterio.plot import show</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># from rasterio.warp import calculate_default_transform, reproject, Resampling</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># path = "/mnt/g/My Drive/earthengine/"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># name = "S2_Summer_Composite.tif"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># new_name = "S2_Summer_Composite_projected.tif"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rasterio <span class="im">as</span> rio</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rasterio.plot <span class="im">import</span> show</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rasterio.warp <span class="im">import</span> calculate_default_transform, reproject, Resampling</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">"/mnt/g/My Drive/earthengine/"</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"S2_Summer_Composite.tif"</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>new_name <span class="op">=</span> <span class="st">"S2_Summer_Composite_projected.tif"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>BBECA.crs</span>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># BBECA.crs</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>dst_crs <span class="op">=</span> <span class="st">'EPSG:26910'</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># dst_crs = 'EPSG:26910'</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>Projected_Image <span class="op">=</span> <span class="st">'temp/FI_Projected.tif'</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Projected_Image = 'temp/FI_Projected.tif'</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> rio.<span class="bu">open</span>(path<span class="op">+</span>name) <span class="im">as</span> src:</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    transform, width, height <span class="op">=</span> calculate_default_transform(</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        src.crs, dst_crs, src.width, src.height, <span class="op">*</span>src.bounds)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    kwargs <span class="op">=</span> src.meta.copy()</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    kwargs.update({</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">'crs'</span>: dst_crs,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">'transform'</span>: transform,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">'width'</span>: width,</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">'height'</span>: height</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># with rio.open(path+name) as src:</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     transform, width, height = calculate_default_transform(</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#         src.crs, dst_crs, src.width, src.height, *src.bounds)</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     kwargs = src.meta.copy()</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#     kwargs.update({</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#         'crs': dst_crs,</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#         'transform': transform,</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#         'width': width,</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#         'height': height</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#     })</span></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> rio.<span class="bu">open</span>(Projected_Image, <span class="st">'w'</span>, <span class="op">**</span>kwargs) <span class="im">as</span> dst:</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, src.count <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>            <span class="co"># clip = pct_clip(rio.band(src, i))</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>            reproject(</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>                source<span class="op">=</span>rio.band(src, i),</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>                destination<span class="op">=</span>rio.band(dst, i),</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>                src_transform<span class="op">=</span>src.transform,</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>                src_crs<span class="op">=</span>src.crs,</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>                dst_transform<span class="op">=</span>transform,</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>                dst_crs<span class="op">=</span>dst_crs,</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>                resampling<span class="op">=</span>Resampling.nearest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#     with rio.open(Projected_Image, 'w', **kwargs) as dst:</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#         for i in range(1, src.count + 1):</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#             # clip = pct_clip(rio.band(src, i))</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#             reproject(</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#                 source=rio.band(src, i),</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">#                 destination=rio.band(dst, i),</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">#                 src_transform=src.transform,</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co">#                 src_crs=src.crs,</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co">#                 dst_transform=transform,</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co">#                 dst_crs=dst_crs,</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co">#                 resampling=Resampling.nearest)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="26">
+<div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ECC <span class="op">=</span> pd.read_csv(<span class="st">'BB_Data/DELTA BURNS BOG.csv'</span>,parse_dates<span class="op">=</span>[<span class="st">'LOCAL_DATE'</span>],low_memory<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>ECC <span class="op">=</span> ECC.set_index(<span class="st">'LOCAL_DATE'</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>ECC_m <span class="op">=</span> ECC[[<span class="st">'TEMP'</span>]].groupby(ECC.index.month).mean()</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>ECC_ym <span class="op">=</span> ECC[[<span class="st">'PRECIP_AMOUNT'</span>]].resample(<span class="st">'m'</span>).<span class="bu">sum</span>()</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ECC_m[<span class="st">'PRECIP_AMOUNT'</span>] <span class="op">=</span> ECC_ym.groupby(ECC_ym.index.month).mean()</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>kwargs <span class="op">=</span> {<span class="st">'color'</span>:<span class="st">'red'</span>,<span class="st">'edgecolor'</span>:<span class="st">'k'</span>}</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="dv">7</span>),sharex<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].bar(ECC_m.index,ECC_m[<span class="st">'TEMP'</span>],<span class="op">**</span>kwargs)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].grid()</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">'$\circ C$'</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">'Air Temperature'</span>,loc<span class="op">=</span><span class="st">'left'</span>)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>kwargs[<span class="st">'color'</span>]<span class="op">=</span><span class="st">'blue'</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].bar(ECC_m.index,ECC_m[<span class="st">'PRECIP_AMOUNT'</span>],<span class="op">**</span>kwargs)</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].grid()</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xticklabels([<span class="st">''</span>,<span class="st">'Feb'</span>,<span class="st">'Apr'</span>,<span class="st">'Jun'</span>,<span class="st">'Aug'</span>,<span class="st">'Oct'</span>,<span class="st">'Dec'</span>])</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'mm'</span>)</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">'Precipitation'</span>,loc<span class="op">=</span><span class="st">'left'</span>)</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'images/Climatology.png'</span>,dpi<span class="op">=</span><span class="dv">600</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_4841/2634464067.py:21: UserWarning: FixedFormatter should only be used together with FixedLocator
-  ax[1].set_xticklabels(['','Feb','Apr','Jun','Aug','Oct','Dec'])</code></pre>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>Van <span class="op">=</span> pd.read_csv(<span class="st">"BB_Data/VANCOUVER INT'L A.csv"</span>,parse_dates<span class="op">=</span>[<span class="st">'LOCAL_DATE'</span>],low_memory<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>BB1 <span class="op">=</span> pd.read_csv(<span class="st">"BB_Data/VANCOUVER INTL A.csv"</span>,parse_dates<span class="op">=</span>[<span class="st">'LOCAL_DATE'</span>],low_memory<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>Van <span class="op">=</span> pd.concat(</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    [Van,BB1]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>Van <span class="op">=</span> Van.set_index(<span class="st">'LOCAL_DATE'</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Van[<span class="st">'PRECIP_AMOUNT'</span>].describe())</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Van = Van[['TEMP','PRECIP_AMOUNT']].resample('Y').sum()</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Van</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>count    0.0
+mean     NaN
+std      NaN
+min      NaN
+25%      NaN
+50%      NaN
+75%      NaN
+max      NaN
+Name: PRECIP_AMOUNT, dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>BB1 <span class="op">=</span> pd.read_csv(<span class="st">'BB_Data/BB1_Climate.csv'</span>,parse_dates<span class="op">=</span>{<span class="st">'Date'</span>:[<span class="dv">0</span>]},low_memory<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>BB1 <span class="op">=</span> BB1.set_index(<span class="st">'Date'</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>BB1 <span class="op">=</span> BB1.loc[BB1.index.year<span class="op">&lt;=</span><span class="dv">2022</span>]</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>BB1_m <span class="op">=</span> BB1[[<span class="st">'TA'</span>]].groupby(BB1.index.month).mean()</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>BB1_ym <span class="op">=</span> BB1[[<span class="st">'P'</span>]].resample(<span class="st">'m'</span>).<span class="bu">sum</span>()</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>BB1_m[<span class="st">'P'</span>] <span class="op">=</span> BB1_ym.groupby(BB1_ym.index.month).mean()</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>WTD<span class="op">=</span>pd.read_csv(<span class="st">'BB_Data/BB1_WTD_Corrected.csv'</span>,parse_dates<span class="op">=</span>[<span class="st">'Date'</span>],index_col<span class="op">=</span>[<span class="st">'Date'</span>])</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>kwargs <span class="op">=</span> {<span class="st">'color'</span>:<span class="st">'red'</span>,<span class="st">'edgecolor'</span>:<span class="st">'k'</span>}</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(<span class="dv">3</span>,figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>),sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].bar(BB1_m.index,BB1_m[<span class="st">'TA'</span>],<span class="op">**</span>kwargs)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].grid()</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">'$\circ C$'</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">'Mean Monthly Air Temperature (2016 - 2022)'</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>kwargs[<span class="st">'color'</span>]<span class="op">=</span><span class="st">'blue'</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].bar(BB1_m.index,BB1_m[<span class="st">'P'</span>],<span class="op">**</span>kwargs)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].grid()</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'mm'</span>)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">'Total Monthly Precipitation (2016 - 2022)'</span>)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>kwargs[<span class="st">'color'</span>] <span class="op">=</span> <span class="st">'purple'</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>WTD_m <span class="op">=</span> WTD.groupby(WTD.index.month).mean()</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].bar(WTD_m.index,WTD_m[<span class="st">'WTD_est'</span>],<span class="op">**</span>kwargs)</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].grid()</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_ylabel(<span class="st">'cm'</span>)</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_title(<span class="st">'Water Table Height (2018 - 2022)'</span>)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_xticks([<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">12</span>])</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_xticklabels([<span class="st">'Feb'</span>,<span class="st">'Apr'</span>,<span class="st">'Jun'</span>,<span class="st">'Aug'</span>,<span class="st">'Oct'</span>,<span class="st">'Dec'</span>])</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'images/Climatology.png'</span>,dpi<span class="op">=</span><span class="dv">600</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Maps_and_Figures_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(BB1[<span class="st">'TA'</span>].mean().<span class="bu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># BB1['ET']=BB1['ET'].interpolate()</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Balance: '</span>,np.<span class="bu">round</span>(BB1[<span class="st">'ET'</span>].mean()<span class="op">*</span><span class="dv">48</span><span class="op">*</span><span class="dv">356</span>,<span class="dv">2</span>),np.<span class="bu">round</span>(BB1[<span class="st">'P'</span>].mean()<span class="op">*</span><span class="dv">48</span><span class="op">*</span><span class="dv">356</span>,<span class="dv">2</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.<span class="bu">round</span>(BB1[<span class="st">'P'</span>].std()<span class="op">/</span>(BB1[<span class="st">'P'</span>].count()<span class="op">**</span><span class="fl">.5</span>)<span class="op">*</span>stats.t.ppf(<span class="fl">0.95</span>,BB1[<span class="st">'P'</span>].count())<span class="op">*</span><span class="dv">48</span><span class="op">*</span><span class="dv">356</span>,<span class="dv">2</span>))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>BB1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>10.5
+Balance:  736.48 1137.41
+21.36</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="70">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>P</th>
+      <th>TA</th>
+      <th>ET</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2016-01-01 00:30:00.000003328</th>
+      <td>0.0</td>
+      <td>-5.254056</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2016-01-01 00:59:59.999996672</th>
+      <td>0.0</td>
+      <td>-4.869694</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2016-01-01 01:30:00.000000000</th>
+      <td>0.0</td>
+      <td>-4.534694</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2016-01-01 02:00:00.000003328</th>
+      <td>0.0</td>
+      <td>-4.130424</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2016-01-01 02:29:59.999996672</th>
+      <td>0.0</td>
+      <td>-4.812542</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2022-12-31 21:30:00.000003328</th>
+      <td>0.0</td>
+      <td>3.239040</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2022-12-31 21:59:59.999996672</th>
+      <td>0.0</td>
+      <td>3.637281</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2022-12-31 22:30:00.000000000</th>
+      <td>0.0</td>
+      <td>2.872108</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2022-12-31 23:00:00.000003328</th>
+      <td>0.0</td>
+      <td>3.287500</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2022-12-31 23:29:59.999996672</th>
+      <td>0.0</td>
+      <td>2.639389</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>122735 rows × 3 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># sudo mount -a</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>Clim <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2016</span>,<span class="dv">2024</span>):</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    Dir <span class="op">=</span> <span class="ss">f'/mnt/w/</span><span class="sc">{</span>y<span class="sc">}</span><span class="ss">/BB'</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    WL <span class="op">=</span> <span class="st">'/Met/MET_WaterLevel_Avg'</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    BH <span class="op">=</span> <span class="st">'/Met/MET_Bog_Height_Avg'</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> <span class="st">'/Clean/SecondStage/P_1_1_1'</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    TA <span class="op">=</span> <span class="st">'/Clean/SecondStage/TA_1_1_1'</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    ET <span class="op">=</span> <span class="st">'/Flux/Clean/ET'</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    Time <span class="op">=</span> <span class="st">'/Met/clean_tv'</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    WL <span class="op">=</span> Dir <span class="op">+</span> WL</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    BH <span class="op">=</span> Dir <span class="op">+</span> BH</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> Dir <span class="op">+</span> P</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    TA <span class="op">=</span> Dir <span class="op">+</span> TA</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    ET <span class="op">=</span> Dir <span class="op">+</span> ET</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    time_file <span class="op">=</span> Dir <span class="op">+</span> Time</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    Time <span class="op">=</span> np.fromfile(<span class="bu">open</span>(time_file, mode<span class="op">=</span><span class="st">'rb'</span>), <span class="st">'float64'</span>)</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># WL = np.fromfile(open(WL, mode='rb'), 'float32')</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># BH = np.fromfile(open(BH, mode='rb'), 'float32')</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> np.fromfile(<span class="bu">open</span>(P, mode<span class="op">=</span><span class="st">'rb'</span>), <span class="st">'float32'</span>)</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    TA <span class="op">=</span> np.fromfile(<span class="bu">open</span>(TA, mode<span class="op">=</span><span class="st">'rb'</span>), <span class="st">'float32'</span>)</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    ET <span class="op">=</span> np.fromfile(<span class="bu">open</span>(ET, mode<span class="op">=</span><span class="st">'rb'</span>), <span class="st">'float32'</span>)</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    Time <span class="op">=</span> pd.to_datetime(Time<span class="op">-</span><span class="dv">719529</span>,unit<span class="op">=</span><span class="st">'D'</span>)</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    Clim <span class="op">=</span> pd.concat([</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>        Clim,</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>        pd.DataFrame(index<span class="op">=</span>Time,data<span class="op">=</span>{<span class="st">'P'</span>:P,<span class="st">'TA'</span>:TA,<span class="st">'ET'</span>:ET})</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>        ])</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>Clim <span class="op">=</span> Clim.loc[Clim.index.year<span class="op">&lt;=</span><span class="dv">2023</span>]</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>Clim.to_csv(<span class="st">'BB_Data/BB1_Climate.csv'</span>)</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>Clim.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>P</th>
+      <th>TA</th>
+      <th>ET</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2016-01-01 00:30:00.000003328</th>
+      <td>0.0</td>
+      <td>-5.254056</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2016-01-01 00:59:59.999996672</th>
+      <td>0.0</td>
+      <td>-4.869694</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2016-01-01 01:30:00.000000000</th>
+      <td>0.0</td>
+      <td>-4.534694</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2016-01-01 02:00:00.000003328</th>
+      <td>0.0</td>
+      <td>-4.130424</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2016-01-01 02:29:59.999996672</th>
+      <td>0.0</td>
+      <td>-4.812541</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># M = Clim.resample('M').sum()</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># M['TA'] = Clim.resample('M').mean()['TA']</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># M.loc[((M.index.year&lt;=2022)|(M.index.month&lt;=3))]</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># M = M.groupby(M.index.month).mean()</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># M</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<pre><code>(105167, 3)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="117">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># WTD.to_csv('BB_Data/BB1.WTD')</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># WTD.resample('D').mean().plot(kind='scatter',x='WL',y='BH')</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>WTD <span class="op">=</span> pd.read_csv(<span class="st">'BB_Data/BB1.WTD'</span>,parse_dates<span class="op">=</span>{<span class="st">'Date'</span>:[<span class="dv">0</span>]})</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>WTD <span class="op">=</span> WTD.set_index(<span class="st">'Date'</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>WTD <span class="op">=</span> WTD.resample(<span class="st">'30T'</span>).nearest()</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>WTD_Man <span class="op">=</span> pd.read_csv(<span class="st">'BB_Data/BBFluxWell_SaraKnox.csv'</span>,skiprows<span class="op">=</span><span class="dv">3</span>,parse_dates<span class="op">=</span>[<span class="st">'Date'</span>])</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>WTD_Man <span class="op">=</span> WTD_Man.set_index(WTD_Man[<span class="st">'Date'</span>])</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>WTD_Man <span class="op">=</span> WTD_Man.drop(<span class="st">'Date'</span>,axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># WTD</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>WTD_Man[<span class="st">'Pipe'</span>] <span class="op">=</span> WTD_Man[[<span class="st">'Ground_centralWell_westSideofPipe'</span>,<span class="st">'Ground_centralWell_southSideofPipe'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>WTD_Man[<span class="st">'WTD'</span>]<span class="op">=</span>WTD_Man[<span class="st">'Pipe'</span>]<span class="op">-</span>WTD_Man[<span class="st">'WT_centralWell'</span>]</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>WTD_Man <span class="op">=</span> WTD_Man.resample(<span class="st">'30T'</span>).last()</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>WTD <span class="op">=</span> WTD.join(WTD_Man[[<span class="st">'WTD'</span>,<span class="st">'Pipe'</span>]])</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>WTD_BU <span class="op">=</span> WTD.copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="118">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>WTD <span class="op">=</span> WTD[[<span class="st">'WL'</span>,<span class="st">'WTD'</span>]].dropna()</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots()</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(WTD[<span class="st">'WL'</span>],WTD[<span class="st">'WTD'</span>],c<span class="op">=</span>WTD.index.year)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(WTD[<span class="st">'WL'</span>],prepend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>mod <span class="op">=</span> sm.OLS(WTD[<span class="st">'WTD'</span>], X)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> mod.fit()</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(WTD_BU[<span class="st">'WL'</span>],prepend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>WTD_BU[<span class="st">'WTD_est'</span>] <span class="op">=</span> res.predict(X)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>ax.plot(WTD_BU.index,WTD_BU[<span class="st">'WTD_est'</span>] )</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res.summary())</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>WTD_BU.to_csv(<span class="st">'BB_Data/BB1_WTD_Corrected.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    WTD   R-squared:                       0.849
+Model:                            OLS   Adj. R-squared:                  0.844
+Method:                 Least Squares   F-statistic:                     201.8
+Date:                Mon, 17 Apr 2023   Prob (F-statistic):           2.48e-16
+Time:                        17:27:50   Log-Likelihood:                -53.523
+No. Observations:                  38   AIC:                             111.0
+Df Residuals:                      36   BIC:                             114.3
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+WL             0.2299      0.016     14.207      0.000       0.197       0.263
+const        -16.2025      1.025    -15.806      0.000     -18.282     -14.124
+==============================================================================
+Omnibus:                        1.589   Durbin-Watson:                   1.089
+Prob(Omnibus):                  0.452   Jarque-Bera (JB):                0.663
+Skew:                           0.072   Prob(JB):                        0.718
+Kurtosis:                       3.631   Cond. No.                         394.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Maps_and_Figures_files/figure-html/cell-7-output-2.png" class="img-fluid"></p>
+<p><img src="Maps_and_Figures_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
 </div>
+<div class="cell-output cell-output-display">
+<p><img src="Maps_and_Figures_files/figure-html/cell-13-output-3.png" class="img-fluid"></p>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Dbase <span class="op">=</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

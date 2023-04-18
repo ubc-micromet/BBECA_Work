@@ -12,13 +12,11 @@ format:
     margin: 0.05
     width: 1200
     css: style.css
+    slide-number: true
+    show-slide-number: print
   # pdf:
   #   code-fold: true
   
-# execute:
-#   echo: false
-#   warning: false
-# jupyter: python3
 author:
   - name: Dr. June Skeeter
     # orcid: 0000-0002-7051-343X
@@ -38,9 +36,12 @@ affiliations:
       postal-code: V6T 1Z2
 keywords: [Peatlands, Carbon, Micrometeorology, Fluxes, Modelling]
 
+bibliography: BBECA_pubs.bib
+csl: american-geophysical-union.csl
+
 ---
 
-## Introduction
+# Introduction
 
 :::: {.columns}
 
@@ -86,7 +87,7 @@ Burns Bog is a raised ombrotrophic peatland in the Fraser River Delta.
 
 ::: {.column width="50%"}
 
-BBECA has a mean annual air temperature of 10 C and receives 1200 mm of precipitation a year.
+The bog has a mean annual air temperature of 10.5 C and averages 1130 mm of precipitation a year.
 
 * Mediterranean climate poses management challenges
   * Summer: heatwaves, droughts, & fires 
@@ -95,8 +96,6 @@ BBECA has a mean annual air temperature of 10 C and receives 1200 mm of precipit
 :::
 
 ::: {.column width="50%"}
-
-Monthly climate data from the BBECA
 
 ![](images/Climatology.png)
 
@@ -120,21 +119,20 @@ Monthly climate data from the BBECA
 
 ::: {.column width="50%"}
 
-Beakrush-sphagnum ecosystem undergoing active restoration with an EC station established in 2015. 
+Beakrush-sphagnum ecosystem undergoing active restoration. 
 
 * Harvested from 1957 to 1963
-  * Rewetting (ditch-blocking) began in 2007
-* Net-neutral C fluxes (2016 - 2021)
+  * Ditch-blocking began in 2007
+  * EC station established in 2015
+* Net-neutral C fluxes between 2016 and 2021 [@satriawan_interannual_2022]
   * CO<sub>2</sub> uptake offset by CH<sub>4</sub> emissions
-    * *Positive Radiative Balance*
-  * Significant inter-annual variability
 
 :::
 
 ::: {.column width="50%"}
 
 
-![](images/Beakrush_Sedge.jpg)
+![](images/BB1_System.jpg)
 
 
 :::
@@ -143,56 +141,70 @@ Beakrush-sphagnum ecosystem undergoing active restoration with an EC station est
 
 ## BB2
 
-
 :::: {.columns}
 
 ::: {.column width="50%"}
 
-Beakrush-sphagnum/pine-sphagnum ecosystem with an EC station established in 2019. 
+Beakrush-sphagnum/pine-sphagnum ecosystem passively rewetting. 
 
 * Harvested from 1930 to 1948
-  * Rewetting by passive means
-* Net C source (2020)
-  * Net CO<sub>2</sub> emission
-  * Lower CH<sub>4</sub> emission than BB1
+  * EC station established in 2019
+* Net C source in 2020 [@nyberg_impacts_2021]
+  * Net CO<sub>2</sub> & CH<sub>4</sub> emission
 
 :::
 
 ::: {.column width="50%"}
 
-
-![](images/Pine_Sphagnum.jpg)
-
+![](images/BB2_System.jpg){fig-align="center" height=550} 
 
 :::
 ::::
 
+## Comparing Management Strategies
+
+
+Preliminary data (2020) indicate ditch blocking reduces radiative forcing [@nyberg_impacts_2022].
+
+::: {layout-ncol=2}
+
+![](images/Beakrush_Sedge.jpg)
+
+![](images/Pine_Beakrush_Transition.jpg)
+
+:::
 
 ## BBS
 
+Assessing impact of seedling removal on C fluxes in a Pine-sphagnum ecosystem.
+
+::: {layout-ncol=2}
+
+![](images/Seedling.jpg)
+
+![](images/Removal.jpg)
+
+:::
+
+## BBS
+
+
 :::: {.columns}
+
 ::: {.column width="50%"}
 
-
-Pine-sphagnum ecosystem burned by wildfire in 2015.
-
-* Post-fire pine seedling germination
-  * 2006 fire > in dense pine stand > halted peat development
-  * Seedling removal initiated in 2019
-* Chamber experiment assessing impacts of removal on respiration
-* Mobile flux tower will be installed in seedling area
+Chamber measurement comparing treatments across ecosystem sub-types
 
 :::
 
 ::: {.column width="50%"}
 
-
-![](images/BurnZone.jpg)
+![](images/Chamber_Install.jpg){fig-align="center" height=550}
 
 :::
 ::::
 
-# Proposed Research
+# Planned Research
 
 ## Modelling Fluxes
 
@@ -210,7 +222,9 @@ Metro Vancouver Sustainability and Innovation Fund.
 
 ::: {.column width="50%"}
 
-![](images/SIF_Model.png)
+![](images/SIF_Model.png){fig-align="center" height=550} 
 
 :::
 ::::
+
+## References
