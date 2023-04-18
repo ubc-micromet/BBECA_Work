@@ -230,7 +230,19 @@ Metro Vancouver Sustainability and Innovation Fund.
 
 ## GHG fluxes from Prairie Pothole wetlands 
 
-Similar wetlands, but VERY different $CH_{4}$ fluxes driven by differences in sulfate between sites. Could be an interesting case study for CLASSIC.
+In collaboration with Ducks Unlimited Canada, we are measureming GHG fluxes from wetlands in the Prairie Pothole region of Canada (Manitoba).
+
+::: {layout-ncol=2}
+
+![](images/Hogg.png)
+
+![](images/Young.png)
+
+:::
+
+## GHG fluxes from Prairie Pothole wetlands 
+
+Despite both looking like typical marshes, they have VERY different $CH_{4}$ fluxes driven by differences in sulfate between the sites. This could be an interesting case study for CLASSIC.
 
 ::: {layout-ncol=2}
 
