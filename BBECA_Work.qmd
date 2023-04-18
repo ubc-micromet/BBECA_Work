@@ -25,6 +25,7 @@ author:
     affiliations:
     - ref: UBC
   - name: Dr. Sara Knox
+    email: sara.knox@ubc.ca
     affiliations:
     - ref: UBC
 affiliations:
@@ -226,5 +227,17 @@ Metro Vancouver Sustainability and Innovation Fund.
 
 :::
 ::::
+
+## GHG fluxes from Prairie Pothole wetlands 
+
+Similar wetlands, but VERY different $CH_{4}$ fluxes driven by differences in sulfate between sites. Could be an interesting case study for CLASSIC.
+
+::: {layout-ncol=2}
+
+![](images/FCH4.png)
+
+![](images/NEE.png)
+
+:::
 
 ## References
