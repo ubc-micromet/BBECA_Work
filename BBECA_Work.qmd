@@ -1,8 +1,6 @@
 ---
 title: "Ongoing and Proposed Research in the Burns Bog Ecological Conservancy Area"
 format:
-  # pptx:
-  #   code-fold: true
   revealjs:
     code-fold: true
     controls: true
@@ -14,6 +12,7 @@ format:
     css: style.css
     slide-number: true
     show-slide-number: all
+    pdfMaxPagesPerSlide: 1
   # pdf:
   #   code-fold: true
   
@@ -37,8 +36,8 @@ affiliations:
       postal-code: V6T 1Z2
 keywords: [Peatlands, Carbon, Micrometeorology, Fluxes, Modelling]
 
-bibliography: BBECA_pubs.bib
-csl: american-geophysical-union.csl
+# bibliography: BBECA_pubs.bib
+# csl: american-geophysical-union.csl
 
 ---
 
@@ -60,25 +59,7 @@ Protects a raised ombrotrophic peat bog in Delta, BC.
 
 ::: {.column}
 
-<!-- **BBECA** in Delta, BC. -->
-
-<!-- <div style="overflow: hidden;
-  width: 100%;
-  height: 600;
-  padding-top: 100%;
-  position: relative">
-  <iframe src="BaseMap.html" title="Processes" scrolling="no" frameborder="0"
-    style="border: 0;
-   height: 100%;
-   left: 0;
-   position: absolute;
-   top: 0;
-   width: 100%;">
- </iframe>
-</div> -->
-
-
-![](images/Basemap.png){fig-align="center" width=100%}
+![](images/Basemap.png)
 
 :::
 ::::
@@ -90,11 +71,10 @@ Protects a raised ombrotrophic peat bog in Delta, BC.
 
 ::: {.column width="50%"}
 
-The bog has a mean annual air temperature of 10.5 C and averages 1130 mm of precipitation a year.
-
-* Mediterranean climate poses management challenges
-  * Summer: heatwaves, droughts, & fires 
-  * Winter: Intense precipitation & flooding
+Mean air temperature is 10.5 C. Average annual precipitation and evapotranspiration are 1160 mm and 750 mm.
+ 
+* Summer: droughts, heatwaves, & fires 
+* Winter: flooding
 
 :::
 
@@ -106,10 +86,21 @@ The bog has a mean annual air temperature of 10.5 C and averages 1130 mm of prec
 :::
 ::::
 
+####
 
-## Ecosystems of the BBECA
+## Ecosystems in the BBECA
 
-![](images/EcosystemMap.png){fig-align="center" width=100%}
+<div style="border: 1;
+   position: absolute;
+   height: 500;
+   right: 5%;
+   top: 5%;
+   width: 800;">
+ <!-- <img src="images/EcosystemMap.png"></img> -->
+![](images/EcosystemMap.png){width=900}
+</div>
+
+
 
 # Flux Measurement Sites
 
@@ -127,7 +118,7 @@ Beakrush-sphagnum ecosystem undergoing active restoration.
 * Harvested from 1957 to 1963
   * Ditch-blocking began in 2007
   * EC station established in 2015
-* Net-neutral C fluxes between 2016 and 2021 [@satriawan_interannual_2022]
+* Net-neutral C fluxes between 2016 and 2021
   * CO<sub>2</sub> uptake offset by CH<sub>4</sub> emissions
 
 :::
@@ -152,14 +143,14 @@ Beakrush-sphagnum/pine-sphagnum ecosystem passively rewetting.
 
 * Harvested from 1930 to 1948
   * EC station established in 2019
-* Net C source in 2020 [@nyberg_impacts_2021]
+* Net C source in 2020
   * Net CO<sub>2</sub> & CH<sub>4</sub> emission
 
 :::
 
 ::: {.column width="50%"}
 
-![](images/BB2_System.jpg){fig-align="center" height=550} 
+![](images/BB2_System.jpg){height=550} 
 
 :::
 ::::
@@ -167,13 +158,15 @@ Beakrush-sphagnum/pine-sphagnum ecosystem passively rewetting.
 ## Comparing Management Strategies
 
 
-Preliminary data (2020) indicate ditch blocking reduces radiative forcing [@nyberg_impacts_2022].
+Preliminary analysis: ditch blocking reduces radiative forcing.
+
+* How would CLASSIC handle these two sites?
 
 ::: {layout-ncol=2}
 
-![](images/Beakrush_Sedge.jpg)
+![](images/Beakrush_Sedge.jpg){width=500}
 
-![](images/Pine_Beakrush_Transition.jpg)
+![](images/Pine_Beakrush_Transition.jpg){width=500}
 
 :::
 
@@ -183,9 +176,9 @@ Assessing impact of seedling removal on C fluxes in a Pine-sphagnum ecosystem.
 
 ::: {layout-ncol=2}
 
-![](images/Seedling.jpg)
+![](images/Seedling.jpg){width=500}
 
-![](images/Removal.jpg)
+![](images/Removal.jpg){width=500}
 
 :::
 
@@ -196,13 +189,18 @@ Assessing impact of seedling removal on C fluxes in a Pine-sphagnum ecosystem.
 
 ::: {.column width="50%"}
 
-Chamber measurement comparing treatments across ecosystem sub-types
+Chamber measurement comparing treatments.
+
+* Temporary EC installation *May
+
+
+![](images/Mobile.jpg){width=400}
 
 :::
 
 ::: {.column width="50%"}
 
-![](images/Chamber_Install.jpg){fig-align="center" height=550}
+![](images/Zoe_Chamber.jpg){width=400}
 
 :::
 ::::
@@ -214,44 +212,39 @@ Chamber measurement comparing treatments across ecosystem sub-types
 :::: {.columns}
 ::: {.column width="50%"}
 
-Metro Vancouver Sustainability and Innovation Fund.
+Modeling impacts of change on carbon and water fluxes
 
-* Modeling impacts of change on carbon and climate
-  * Test influence of management scenarios
-  * Optimize C sequestration of the BBECA
+* Test management scenarios
+  * Optimize C sequestration
 * Refine spatial inventory of BBECA Ecosystems
 
 :::
 
 ::: {.column width="50%"}
 
-![](images/SIF_Model.png){fig-align="center" height=550} 
+![](images/SIF_Model.png){width=450} 
 
 :::
 ::::
 
 
-## Applying CLASSIC to the BOG
+## Spatial-Temporal Upscaling
 
 :::: {.columns}
 ::: {.column width="50%"}
 
-Metro Vancouver Sustainability and Innovation Fund.
+Refine spatial inventory of BBECA Ecosystems
 
-* Modeling impacts of change on carbon and climate
-  * Test influence of management scenarios
-  * Optimize C sequestration of the BBECA
-* Refine spatial inventory of BBECA Ecosystems
+* Compare CLASSIC to machine learning approaches
 
 :::
 
 ::: {.column width="50%"}
 
-![](images/SIF_Model.png){fig-align="center" height=550} 
+![](images/EcosystemMap){width=550} 
 
 :::
 ::::
-
 
 
 ## GHG fluxes from Prairie Pothole wetlands 
@@ -278,4 +271,4 @@ Despite both looking like typical marshes, they have VERY different $CH_{4}$ flu
 
 :::
 
-## References
+## Questions

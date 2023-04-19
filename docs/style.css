@@ -2,3 +2,18 @@
 #hcenter {
   text-align: center;
 }
+
+#vtop {
+  vertical-align: top;
+}
+
+.center-xy {
+  margin: 0;
+  position: absolute;
+  top: -10%;
+  right: 25%;
+  -ms-transform: translateY(-50%), translateX(-50%);
+  transform: translateY(-50%), translateX(-50%);
+}
+
+.solid {border-style: solid;}
